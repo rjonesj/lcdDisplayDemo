@@ -27,24 +27,24 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-DisplayLCDDemo.elf \
+LCDDisplayDemo.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-DisplayLCDDemo.list \
+LCDDisplayDemo.list \
 
 OBJCOPY_BIN += \
-DisplayLCDDemo.bin \
+LCDDisplayDemo.bin \
 
 
 # All Target
-all: DisplayLCDDemo.elf secondary-outputs
+all: LCDDisplayDemo.elf secondary-outputs
 
 # Tool invocations
-DisplayLCDDemo.elf: $(OBJS) $(USER_OBJS) C:\Users\jone1\STM32CubeIDE\workspace_1.3.0\LCDDisplayDemo\DisplayLCDDemo\STM32F303VCTX_FLASH.ld
-	arm-none-eabi-gcc -o "DisplayLCDDemo.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\jone1\STM32CubeIDE\workspace_1.3.0\LCDDisplayDemo\DisplayLCDDemo\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DisplayLCDDemo.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+LCDDisplayDemo.elf: $(OBJS) $(USER_OBJS) C:\Users\jone1\STM32CubeIDE\workspace_1.3.0\lcdDisplayDemoGit\STM32F303VCTX_FLASH.ld
+	arm-none-eabi-gcc -o "LCDDisplayDemo.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\jone1\STM32CubeIDE\workspace_1.3.0\lcdDisplayDemoGit\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LCDDisplayDemo.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -53,13 +53,13 @@ default.size.stdout: $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-DisplayLCDDemo.list: $(EXECUTABLES)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "DisplayLCDDemo.list"
+LCDDisplayDemo.list: $(EXECUTABLES)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "LCDDisplayDemo.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-DisplayLCDDemo.bin: $(EXECUTABLES)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "DisplayLCDDemo.bin"
+LCDDisplayDemo.bin: $(EXECUTABLES)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "LCDDisplayDemo.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 

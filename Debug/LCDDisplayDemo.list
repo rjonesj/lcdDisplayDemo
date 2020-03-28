@@ -1,5 +1,5 @@
 
-DisplayLCDDemo.elf:     file format elf32-littlearm
+LCDDisplayDemo.elf:     file format elf32-littlearm
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
@@ -39,11 +39,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  17 .debug_line   000074ca  00000000  00000000  00076222  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    0009114b  00000000  00000000  0007d6ec  2**0
+ 18 .debug_str    0009113f  00000000  00000000  0007d6ec  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  0010e837  2**0
+ 19 .comment      0000007b  00000000  00000000  0010e82b  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00001b84  00000000  00000000  0010e8b4  2**2
+ 20 .debug_frame  00001b84  00000000  00000000  0010e8a8  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -7299,138 +7299,139 @@ int main(void)
   HAL_Delay(500);
  8003280:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
  8003284:	f7fd f9aa 	bl	80005dc <HAL_Delay>
-  ILI9341_Fill_Screen(RED);
- 8003288:	f44f 4078 	mov.w	r0, #63488	; 0xf800
- 800328c:	f7ff fa76 	bl	800277c <ILI9341_Fill_Screen>
+  ILI9341_Fill_Screen(BLUE);
+ 8003288:	201f      	movs	r0, #31
+ 800328a:	f7ff fa77 	bl	800277c <ILI9341_Fill_Screen>
 //  HAL_Delay(500);
 //  ILI9341_Fill_Screen(BLUE);
 //  HAL_Delay(500);
 
     /* ===============Draw menu================= */
     Display_Menu();
- 8003290:	f7fd f814 	bl	80002bc <Display_Menu>
+ 800328e:	f7fd f815 	bl	80002bc <Display_Menu>
 
 //    while (1)
 //      {
 //  	  HAL_Delay(500);
 //      }
 	  TP_Init();
- 8003294:	f000 fc4c 	bl	8003b30 <TP_Init>
+ 8003292:	f000 fc4d 	bl	8003b30 <TP_Init>
 	  /* Infinite loop */
 	  while (1)
 	  {
 
 		  tp_dev.scan(0);
- 8003298:	4b32      	ldr	r3, [pc, #200]	; (8003364 <main+0x104>)
- 800329a:	685b      	ldr	r3, [r3, #4]
- 800329c:	2000      	movs	r0, #0
- 800329e:	4798      	blx	r3
+ 8003296:	4b33      	ldr	r3, [pc, #204]	; (8003364 <main+0x104>)
+ 8003298:	685b      	ldr	r3, [r3, #4]
+ 800329a:	2000      	movs	r0, #0
+ 800329c:	4798      	blx	r3
 		  if(tp_dev.sta & TP_PRES_DOWN)
- 80032a0:	4b30      	ldr	r3, [pc, #192]	; (8003364 <main+0x104>)
- 80032a2:	7c1b      	ldrb	r3, [r3, #16]
- 80032a4:	b25b      	sxtb	r3, r3
- 80032a6:	2b00      	cmp	r3, #0
- 80032a8:	daf6      	bge.n	8003298 <main+0x38>
+ 800329e:	4b31      	ldr	r3, [pc, #196]	; (8003364 <main+0x104>)
+ 80032a0:	7c1b      	ldrb	r3, [r3, #16]
+ 80032a2:	b25b      	sxtb	r3, r3
+ 80032a4:	2b00      	cmp	r3, #0
+ 80032a6:	daf6      	bge.n	8003296 <main+0x36>
 		  {
 			  xtemp = TP_Read_XOY(0xD0);
- 80032aa:	20d0      	movs	r0, #208	; 0xd0
- 80032ac:	f000 faa8 	bl	8003800 <TP_Read_XOY>
- 80032b0:	4603      	mov	r3, r0
- 80032b2:	80fb      	strh	r3, [r7, #6]
+ 80032a8:	20d0      	movs	r0, #208	; 0xd0
+ 80032aa:	f000 faa9 	bl	8003800 <TP_Read_XOY>
+ 80032ae:	4603      	mov	r3, r0
+ 80032b0:	80fb      	strh	r3, [r7, #6]
 			  ytemp = TP_Read_XOY(0x90);
- 80032b4:	2090      	movs	r0, #144	; 0x90
- 80032b6:	f000 faa3 	bl	8003800 <TP_Read_XOY>
- 80032ba:	4603      	mov	r3, r0
- 80032bc:	80bb      	strh	r3, [r7, #4]
+ 80032b2:	2090      	movs	r0, #144	; 0x90
+ 80032b4:	f000 faa4 	bl	8003800 <TP_Read_XOY>
+ 80032b8:	4603      	mov	r3, r0
+ 80032ba:	80bb      	strh	r3, [r7, #4]
 
 			  if(0 == state)
- 80032be:	4b2a      	ldr	r3, [pc, #168]	; (8003368 <main+0x108>)
- 80032c0:	781b      	ldrb	r3, [r3, #0]
- 80032c2:	2b00      	cmp	r3, #0
- 80032c4:	d131      	bne.n	800332a <main+0xca>
+ 80032bc:	4b2a      	ldr	r3, [pc, #168]	; (8003368 <main+0x108>)
+ 80032be:	781b      	ldrb	r3, [r3, #0]
+ 80032c0:	2b00      	cmp	r3, #0
+ 80032c2:	d131      	bne.n	8003328 <main+0xc8>
 			  {
 				  if(xtemp > 2700 && xtemp < 3400 && ytemp > 3000 && ytemp < 3500) {
- 80032c6:	88fb      	ldrh	r3, [r7, #6]
- 80032c8:	f640 228c 	movw	r2, #2700	; 0xa8c
- 80032cc:	4293      	cmp	r3, r2
- 80032ce:	d913      	bls.n	80032f8 <main+0x98>
- 80032d0:	88fb      	ldrh	r3, [r7, #6]
- 80032d2:	f640 5247 	movw	r2, #3399	; 0xd47
- 80032d6:	4293      	cmp	r3, r2
- 80032d8:	d80e      	bhi.n	80032f8 <main+0x98>
- 80032da:	88bb      	ldrh	r3, [r7, #4]
- 80032dc:	f640 32b8 	movw	r2, #3000	; 0xbb8
- 80032e0:	4293      	cmp	r3, r2
- 80032e2:	d909      	bls.n	80032f8 <main+0x98>
- 80032e4:	88bb      	ldrh	r3, [r7, #4]
- 80032e6:	f640 52ab 	movw	r2, #3499	; 0xdab
- 80032ea:	4293      	cmp	r3, r2
- 80032ec:	d804      	bhi.n	80032f8 <main+0x98>
+ 80032c4:	88fb      	ldrh	r3, [r7, #6]
+ 80032c6:	f640 228c 	movw	r2, #2700	; 0xa8c
+ 80032ca:	4293      	cmp	r3, r2
+ 80032cc:	d913      	bls.n	80032f6 <main+0x96>
+ 80032ce:	88fb      	ldrh	r3, [r7, #6]
+ 80032d0:	f640 5247 	movw	r2, #3399	; 0xd47
+ 80032d4:	4293      	cmp	r3, r2
+ 80032d6:	d80e      	bhi.n	80032f6 <main+0x96>
+ 80032d8:	88bb      	ldrh	r3, [r7, #4]
+ 80032da:	f640 32b8 	movw	r2, #3000	; 0xbb8
+ 80032de:	4293      	cmp	r3, r2
+ 80032e0:	d909      	bls.n	80032f6 <main+0x96>
+ 80032e2:	88bb      	ldrh	r3, [r7, #4]
+ 80032e4:	f640 52ab 	movw	r2, #3499	; 0xdab
+ 80032e8:	4293      	cmp	r3, r2
+ 80032ea:	d804      	bhi.n	80032f6 <main+0x96>
 					  Display_Color_Picture();
- 80032ee:	f7fd f8cd 	bl	800048c <Display_Color_Picture>
+ 80032ec:	f7fd f8ce 	bl	800048c <Display_Color_Picture>
 					  state = 1;
- 80032f2:	4b1d      	ldr	r3, [pc, #116]	; (8003368 <main+0x108>)
- 80032f4:	2201      	movs	r2, #1
- 80032f6:	701a      	strb	r2, [r3, #0]
+ 80032f0:	4b1d      	ldr	r3, [pc, #116]	; (8003368 <main+0x108>)
+ 80032f2:	2201      	movs	r2, #1
+ 80032f4:	701a      	strb	r2, [r3, #0]
 				  }
 
 				  if(xtemp > 1200 && xtemp < 1900 && ytemp > 3000 && ytemp < 3500) {
- 80032f8:	88fb      	ldrh	r3, [r7, #6]
- 80032fa:	f5b3 6f96 	cmp.w	r3, #1200	; 0x4b0
- 80032fe:	d92c      	bls.n	800335a <main+0xfa>
- 8003300:	88fb      	ldrh	r3, [r7, #6]
- 8003302:	f240 726b 	movw	r2, #1899	; 0x76b
- 8003306:	4293      	cmp	r3, r2
- 8003308:	d827      	bhi.n	800335a <main+0xfa>
- 800330a:	88bb      	ldrh	r3, [r7, #4]
- 800330c:	f640 32b8 	movw	r2, #3000	; 0xbb8
- 8003310:	4293      	cmp	r3, r2
- 8003312:	d922      	bls.n	800335a <main+0xfa>
- 8003314:	88bb      	ldrh	r3, [r7, #4]
- 8003316:	f640 52ab 	movw	r2, #3499	; 0xdab
- 800331a:	4293      	cmp	r3, r2
- 800331c:	d81d      	bhi.n	800335a <main+0xfa>
+ 80032f6:	88fb      	ldrh	r3, [r7, #6]
+ 80032f8:	f5b3 6f96 	cmp.w	r3, #1200	; 0x4b0
+ 80032fc:	d92c      	bls.n	8003358 <main+0xf8>
+ 80032fe:	88fb      	ldrh	r3, [r7, #6]
+ 8003300:	f240 726b 	movw	r2, #1899	; 0x76b
+ 8003304:	4293      	cmp	r3, r2
+ 8003306:	d827      	bhi.n	8003358 <main+0xf8>
+ 8003308:	88bb      	ldrh	r3, [r7, #4]
+ 800330a:	f640 32b8 	movw	r2, #3000	; 0xbb8
+ 800330e:	4293      	cmp	r3, r2
+ 8003310:	d922      	bls.n	8003358 <main+0xf8>
+ 8003312:	88bb      	ldrh	r3, [r7, #4]
+ 8003314:	f640 52ab 	movw	r2, #3499	; 0xdab
+ 8003318:	4293      	cmp	r3, r2
+ 800331a:	d81d      	bhi.n	8003358 <main+0xf8>
 					  Display_Text();
- 800331e:	f7fd f863 	bl	80003e8 <Display_Text>
+ 800331c:	f7fd f864 	bl	80003e8 <Display_Text>
 					  state = 1;
- 8003322:	4b11      	ldr	r3, [pc, #68]	; (8003368 <main+0x108>)
- 8003324:	2201      	movs	r2, #1
- 8003326:	701a      	strb	r2, [r3, #0]
- 8003328:	e017      	b.n	800335a <main+0xfa>
+ 8003320:	4b11      	ldr	r3, [pc, #68]	; (8003368 <main+0x108>)
+ 8003322:	2201      	movs	r2, #1
+ 8003324:	701a      	strb	r2, [r3, #0]
+ 8003326:	e017      	b.n	8003358 <main+0xf8>
 				  }
 			  }
 			  else
 			  {
 				  if(xtemp > 3400 && xtemp < 3900 && ytemp > 350 && ytemp < 750) {
- 800332a:	88fb      	ldrh	r3, [r7, #6]
- 800332c:	f640 5248 	movw	r2, #3400	; 0xd48
- 8003330:	4293      	cmp	r3, r2
- 8003332:	d912      	bls.n	800335a <main+0xfa>
- 8003334:	88fb      	ldrh	r3, [r7, #6]
- 8003336:	f640 723b 	movw	r2, #3899	; 0xf3b
- 800333a:	4293      	cmp	r3, r2
- 800333c:	d80d      	bhi.n	800335a <main+0xfa>
- 800333e:	88bb      	ldrh	r3, [r7, #4]
- 8003340:	f5b3 7faf 	cmp.w	r3, #350	; 0x15e
- 8003344:	d909      	bls.n	800335a <main+0xfa>
- 8003346:	88bb      	ldrh	r3, [r7, #4]
- 8003348:	f240 22ed 	movw	r2, #749	; 0x2ed
- 800334c:	4293      	cmp	r3, r2
- 800334e:	d804      	bhi.n	800335a <main+0xfa>
+ 8003328:	88fb      	ldrh	r3, [r7, #6]
+ 800332a:	f640 5248 	movw	r2, #3400	; 0xd48
+ 800332e:	4293      	cmp	r3, r2
+ 8003330:	d912      	bls.n	8003358 <main+0xf8>
+ 8003332:	88fb      	ldrh	r3, [r7, #6]
+ 8003334:	f640 723b 	movw	r2, #3899	; 0xf3b
+ 8003338:	4293      	cmp	r3, r2
+ 800333a:	d80d      	bhi.n	8003358 <main+0xf8>
+ 800333c:	88bb      	ldrh	r3, [r7, #4]
+ 800333e:	f5b3 7faf 	cmp.w	r3, #350	; 0x15e
+ 8003342:	d909      	bls.n	8003358 <main+0xf8>
+ 8003344:	88bb      	ldrh	r3, [r7, #4]
+ 8003346:	f240 22ed 	movw	r2, #749	; 0x2ed
+ 800334a:	4293      	cmp	r3, r2
+ 800334c:	d804      	bhi.n	8003358 <main+0xf8>
 					  Display_Menu();
- 8003350:	f7fc ffb4 	bl	80002bc <Display_Menu>
+ 800334e:	f7fc ffb5 	bl	80002bc <Display_Menu>
 					  state = 0;
- 8003354:	4b04      	ldr	r3, [pc, #16]	; (8003368 <main+0x108>)
- 8003356:	2200      	movs	r2, #0
- 8003358:	701a      	strb	r2, [r3, #0]
+ 8003352:	4b05      	ldr	r3, [pc, #20]	; (8003368 <main+0x108>)
+ 8003354:	2200      	movs	r2, #0
+ 8003356:	701a      	strb	r2, [r3, #0]
 				  }
 			  }
 
 			  HAL_Delay(500);
- 800335a:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
- 800335e:	f7fd f93d 	bl	80005dc <HAL_Delay>
+ 8003358:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
+ 800335c:	f7fd f93e 	bl	80005dc <HAL_Delay>
 		  tp_dev.scan(0);
- 8003362:	e799      	b.n	8003298 <main+0x38>
+ 8003360:	e799      	b.n	8003296 <main+0x36>
+ 8003362:	bf00      	nop
  8003364:	20000014 	.word	0x20000014
  8003368:	200000bc 	.word	0x200000bc
 

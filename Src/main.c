@@ -99,7 +99,7 @@ int main(void)
   ILI9341_Init();
   ILI9341_Set_Rotation(0);
   HAL_Delay(500);
-  ILI9341_Fill_Screen(RED);
+  ILI9341_Fill_Screen(BLUE);
 //  ILI9341_Set_Rotation(1);
 //  HAL_Delay(500);
 //  ILI9341_Fill_Screen(GREEN);
