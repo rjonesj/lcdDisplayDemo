@@ -2,12 +2,15 @@
 #include "ILI9341_Driver.h"
 #include "icons_included.h"
 #include "ironman.h"
+#include "captain.h"
+#include "spiderman.h"
+#include "transistor.h"
 
 void Display_Round_Icon_40x40(const unsigned int icon[], unsigned int x0, unsigned int y0, unsigned int r)
 {
 	uint64_t k = 0;
 
-    ILI9341_Draw_Circle(x0, y0, r, BLUE, 1);
+//    ILI9341_Draw_Circle(x0, y0, r, BLUE, 1);
 
 	for(uint32_t j = y0 - 19; j < y0 + 21; j++)
 	{
@@ -37,17 +40,17 @@ void Display_Menu()
 {
 	/* Refresh the screen to black background */
 	ILI9341_Set_Rotation(3);
-	ILI9341_Fill_Screen(BLACK);
+	ILI9341_Fill_Screen(BLUE);
 	HAL_Delay(500);
 
 	/* Counting through all the bytes of those icons */
 	uint64_t k = 0;
 	/* Draw border for the menu */
     ILI9341_Draw_Empty_Rectangle(GREEN, 10, 30, 310, 230);
-    ILI9341_Draw_Empty_Rectangle(BLUE, 15, 35, 305, 225);
+//    ILI9341_Draw_Empty_Rectangle(BLUE, 15, 35, 305, 225);
 
     /* Write something */
-	ILI9341_Draw_String(10,10,WHITE,BLACK,"It's a good day!",2);
+	ILI9341_Draw_String(10,10,WHITE,BLUE,"It's a good day!",2);
 
 	/* Battery Icon in the top right corner */
     for(uint32_t j = 10; j < 20; j++) {
@@ -80,7 +83,6 @@ void Display_Menu()
 	CS_OFF;
 }
 
-
 void Display_Picture()
 {
 	/* Set the rotation that fit the image */
@@ -92,10 +94,12 @@ void Display_Picture()
 	{
 		for(uint32_t j = 320; j > 0; j--)
 		{
-			ILI9341_Draw_Pixel(i, j, ironman[k]);
+			ILI9341_Draw_Pixel(i, j, captain[k]);
 			k++;
 		}
 	}
+
+	Display_Square_Icon_40x40(back_icon_40x40, 0, 200);
 }
 
 void Display_Text()
@@ -112,20 +116,38 @@ void Display_Text()
 
 	ILI9341_Draw_String(20, 60, WHITE, BLACK, "This is the test for TFT LCD!", 2);
 
-	ILI9341_Draw_String(20, 80, WHITE, BLACK, "For more information, please visit:", 2);
-
-	ILI9341_Draw_String(20, 100, WHITE, BLACK, "    aweirdolife.wordpress.com    ", 2);
+	ILI9341_Draw_String(20, 80, WHITE, BLACK, "What will you do today?", 2);
 
 	Display_Square_Icon_40x40(back_icon_40x40, 0, 200);
 }
 
+//int pictureCounter = 0;
+//int pictureSelection = 0;
+//int maxPictures = 4;
+
 void Display_Color_Picture()
 {
+
+	/* Select image to display */
+//	int pictureSelection = rand() % 4;
+//	pictureSelection = pictureCounter++ % maxPictures;
+
 	for (uint16_t i = 0; i < 280; i++)
 	{
 		for (uint16_t j = 0; j < 320; j++)
 		{
-			ILI9341_Draw_Double_Pixel(j, i, ironman[(640 * i) + j * 2], ironman[(640 * i) + j * 2 + 1]);
+
+//			if(pictureSelection == 0) {
+				ILI9341_Draw_Double_Pixel(j, i, spiderman[(640 * i) + j * 2], spiderman[(640 * i) + j * 2 + 1]);
+//			}
+//			else if(pictureSelection == 1) {
+//				ILI9341_Draw_Double_Pixel(j, i, captain[(640 * i) + j * 2], captain[(640 * i) + j * 2 + 1]);
+//			}
+//			else if(pictureSelection == 2) {
+//				ILI9341_Draw_Double_Pixel(j, i, ironman[(640 * i) + j * 2], ironman[(640 * i) + j * 2 + 1]);
+//			} else if(pictureSelection == 3) {
+//				ILI9341_Draw_Double_Pixel(j, i, transistor[(640 * i) + j * 2], transistor[(640 * i) + j * 2 + 1]);
+//			}
 		}
 	}
 

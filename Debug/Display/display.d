@@ -30,7 +30,8 @@ Display/display.o: ../Display/display.c ../Display/display.h \
  ../Icons/battery_icons.h ../Icons/home_icons.h ../Icons/icons_config.h \
  ../Icons/music_icons.h ../Icons/note_icons.h ../Icons/game_icons.h \
  ../Icons/facebook_icons.h ../Icons/image_icons.h ../Icons/back_icon.h \
- ../Images/ironman.h
+ ../Images/ironman.h ../Images/captain.h ../Images/spiderman.h \
+ ../Images/transistor.h
 
 ../Display/display.h:
 
@@ -113,3 +114,9 @@ Display/display.o: ../Display/display.c ../Display/display.h \
 ../Icons/back_icon.h:
 
 ../Images/ironman.h:
+
+../Images/captain.h:
+
+../Images/spiderman.h:
+
+../Images/transistor.h:

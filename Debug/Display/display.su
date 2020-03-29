@@ -1,6 +1,6 @@
-display.c:6:6:Display_Round_Icon_40x40	56	static
-display.c:22:6:Display_Square_Icon_40x40	48	static
-display.c:36:6:Display_Menu	40	static
-display.c:84:6:Display_Picture	32	static
-display.c:101:6:Display_Text	16	static
-display.c:122:6:Display_Color_Picture	24	static
+display.c:9:6:Display_Round_Icon_40x40	48	static
+display.c:25:6:Display_Square_Icon_40x40	48	static
+display.c:39:6:Display_Menu	40	static
+display.c:86:6:Display_Picture	32	static
+display.c:105:6:Display_Text	16	static
+display.c:128:6:Display_Color_Picture	24	static
